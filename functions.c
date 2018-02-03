@@ -54,7 +54,7 @@ double powerMethod(double * mat, double * x, int size, int iter)
      int arr[size];
      //mult
      for(int i = 0; i < numprocs; i++){
-        MPI_Bcast(arr[i], row_per_proc, MPI_INT, i, MPI_COMM_WORLD);
+        MPI_Bcast(arr[i * row_per_proc], row_per_proc, MPI_INT, i, MPI_COMM_WORLD);
      }
      //norm
      */
