@@ -46,7 +46,8 @@ void generatevec(double * x,int size)
 // Subroutine for the power method, to return the spectral radius
 double powerMethod(double * mat, double * x, int size, int iter)
 {
-    int myrank, numprocs, result_vec, lambda;
+    int myrank, numprocs;
+    double lambda;
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     
@@ -62,10 +63,8 @@ double powerMethod(double * mat, double * x, int size, int iter)
     
     int num_rows = size/numprocs;
     
-    //initialize result_vec to all 1's
-    generatevec(result_vec, size);
     for(int k = 0; k < iter; k++){
-        lambda = norm2(result_vec, size);
+        lambda = norm2(x, size);
         
         for (int i = 0; i < size; i++){
             x[i] = x[i]/lambda;
@@ -83,7 +82,7 @@ double powerMethod(double * mat, double * x, int size, int iter)
         }
          */
         for(int i = 0; i < numprocs; i++){
-            MPI_Bcast(x[i * num_rows], num_rows, MPI_INT, i, MPI_COMM_WORLD);
+            MPI_Bcast(&x[i * num_rows], num_rows, MPI_INT, i, MPI_COMM_WORLD);
         }
     }
     
