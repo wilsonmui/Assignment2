@@ -45,7 +45,7 @@ void generatevec(double * x,int size)
 // Subroutine for the power method, to return the spectral radius
 double powerMethod(double * mat, double * x, int size, int iter)
 {
-    int myrank,numprocs;
+    int myrank, numprocs, product_vector[size], result_vec, lambda;
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     
@@ -59,9 +59,26 @@ double powerMethod(double * mat, double * x, int size, int iter)
      //norm
      */
     
-    int product_vector[size];
     int num_rows = size/numprocs;
-    matVec(mat, product_vector, x, num_rows, size);
+    
+    //initialize result_vec to all 1's
+    generatevec(result_vec, size);
+    for(int k = 0; k < iter; k++){
+        lambda = norm2(result_vec);
+        result_vec = result_vec/lambda;
+        matVec(mat, result_vec, x, num_rows, size);
+        
+        MPI_Barrier;
+        
+        for(int i = 0; i < numprocs; i++){
+            for(int j = myrank*(size/numprocs); j < (myrank+1)(n/p); j++){
+                MPI_Bcast(result_vec[j], row_per_proc, MPI_INT, i, MPI_COMM_WORLD);
+            }
+        }
+
+        
+        
+    }
     
   return lambda;
 }
@@ -72,13 +89,17 @@ double norm2(double *x, int size);
 //multiply matrix by a vector.
 //should result in vec being result
 void matVec(double *mat, double *vec, double *local_vec, int nrows, int size){
-    //vec[size] = mat * local vec
-    for (int k = 0; k < nrows; k++){
-        for (int i = 0; i < size; i++){
-            vec[k] += mat[k][i] * local_vec[i];
+    int myrank,numprocs;
+    MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
+    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+    
+    for(int j = myrank*(size/numprocs); j < (myrank+1)(n/p); j++){
+        for (int k = 0; k < nrows; k++){
+            for (int i = 0; i < size; i++){
+                vec[j] += mat[k][i] * local_vec[i];
+            }
         }
     }
-        
 }
 
 
