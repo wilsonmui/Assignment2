@@ -11,6 +11,7 @@
  */
 
 #include "powermethod.h"
+#include <math.h>
 
 // Subroutine for generating the input matrix (just one thread's part)
 void generatematrix(double * mat, int size)
@@ -64,27 +65,32 @@ double powerMethod(double * mat, double * x, int size, int iter)
     //initialize result_vec to all 1's
     generatevec(result_vec, size);
     for(int k = 0; k < iter; k++){
-        lambda = norm2(result_vec);
-        result_vec = result_vec/lambda;
-        matVec(mat, result_vec, x, num_rows, size);
+        lambda = norm2(result_vec, size);
+        x = x/lambda;
+        
+        //make local vec = matrix * local vec
+        matVec(mat, x, x, num_rows, size);
         
         MPI_Barrier;
         
+        //make all processes' local vectors contain the full product vector
         for(int i = 0; i < numprocs; i++){
             for(int j = myrank*(size/numprocs); j < (myrank+1)(n/p); j++){
-                MPI_Bcast(result_vec[j], row_per_proc, MPI_INT, i, MPI_COMM_WORLD);
+                MPI_Bcast(x[j], row_per_proc, MPI_INT, i, MPI_COMM_WORLD);
             }
         }
-
-        
-        
     }
     
-  return lambda;
 }
 
 //compute the 2-norm (length) of a given vector
-double norm2(double *x, int size);
+double norm2(double *x, int size){
+    int sum = 0;
+    for(int i = 0; i < size; i++){
+        r += x[i]*x[i];
+    }
+    return sqrt(r);
+}
 
 //multiply matrix by a vector.
 //should result in vec being result
