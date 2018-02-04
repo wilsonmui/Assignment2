@@ -20,12 +20,14 @@ void generatematrix(double * mat, int size)
     //mat[i][k]
     //processor 0 gets rows 1 through n/p of A, processor 1 gets rows n/p + 1 through 2n/p, and so forth
     
-    int myrank,numprocs;
+    int myrank, numprocs, i, k;
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+
+    int num_rows = size/numprocs;
     
-    for( int i = myrank*(size/numprocs); i < (myrank+1)(n/p); i++ ){
-        for( int k = 0; k < i; k++){
+    for( i = myrank*num_rows; i < (myrank+1)*num_rows; i++ ){
+        for( k = 0; k < i; k++){
             mat[i][k] = i;
         }
     }
@@ -34,10 +36,10 @@ void generatematrix(double * mat, int size)
 // Subroutine to generate a vector
 void generatevec(double * x,int size)
 {
-    int myrank;
+    int myrank, i;
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     
-    for (int i = 0; i < size; i++){
+    for( i = 0; i < size; i++){
         x[i] = 1;
     }
     
@@ -55,18 +57,18 @@ double powerMethod(double * mat, double * x, int size, int iter)
     /*
      int arr[size];
      //mult
-     for(int i = 0; i < numprocs; i++){
+     for( i = 0; i < numprocs; i++){
         MPI_Bcast(arr[i * row_per_proc], row_per_proc, MPI_INT, i, MPI_COMM_WORLD);
      }
      //norm
      */
     
     int num_rows = size/numprocs;
-    
-    for(int k = 0; k < iter; k++){
+    int i, k;
+    for( k = 0; k < iter; k++){
         lambda = norm2(x, size);
         
-        for (int i = 0; i < size; i++){
+        for( i = 0; i < size; i++){
             x[i] = x[i]/lambda;
         }
         
@@ -75,13 +77,13 @@ double powerMethod(double * mat, double * x, int size, int iter)
         
         //make all processes' local vectors contain the full product vector
         /*
-        for(int i = 0; i < numprocs; i++){
-            for(int j = myrank*(size/numprocs); j < (myrank+1)(n/p); j++){
+        for( i = 0; i < numprocs; i++){
+            for( j = myrank*(size/numprocs); j < (myrank+1)(n/p); j++){
                 MPI_Bcast(&x[j], 1, MPI_INT, i, MPI_COMM_WORLD);
             }
         }
          */
-        for(int i = 0; i < numprocs; i++){
+        for( i = 0; i < numprocs; i++){
             MPI_Bcast(&x[i * num_rows], num_rows, MPI_INT, i, MPI_COMM_WORLD);
         }
     }
@@ -92,43 +94,27 @@ double powerMethod(double * mat, double * x, int size, int iter)
 
 //compute the 2-norm (length) of a given vector
 double norm2(double *x, int size){
-    int sum = 0;
-    for(int i = 0; i < size; i++){
-        r += x[i]*x[i];
+    int sum = 0, i;
+    for( i = 0; i < size; i++){
+        sum += x[i]*x[i];
     }
-    return sqrt(r);
+    return sqrt(sum);
 }
 
 //multiply matrix by a vector.
 //should result in vec being result
 void matVec(double *mat, double *vec, double *local_vec, int nrows, int size){
-    int myrank,numprocs;
+    int myrank, numprocs, i, j, k;
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     
-    for(int j = myrank*(size/numprocs); j < (myrank+1)(n/p); j++){
-        for (int k = 0; k < nrows; k++){
-            for (int i = 0; i < size; i++){
+    int num_rows = size/numprocs;
+
+    for( j = myrank*num_rows; j < (myrank+1)*num_rows; j++){
+        for( k = 0; k < nrows; k++){
+            for( i = 0; i < size; i++){
                 vec[j] += mat[k][i] * local_vec[i];
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
