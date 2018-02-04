@@ -1,6 +1,6 @@
 /* CS 140
  * Assignment 2 : Matrix Vector Multiplication and the Power Method 
- * Group members : <Team-member-1> , <Team-member-2>
+ * Group members : Wilson Mui , Karl Wang
  * */
 
 /* This file provides the placeholder function definitions, where you will be
@@ -23,7 +23,7 @@ void generatematrix(double * mat, int size)
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     
-    for( int i = myrank*(size/numprocs)+1 -1; i < (myrank+1)(n/p); i++ ){
+    for( int i = myrank*(size/numprocs); i < (myrank+1)(n/p); i++ ){
         for( int k = 0; k < i; k++){
             mat[i][k] = i;
         }
@@ -59,12 +59,27 @@ double powerMethod(double * mat, double * x, int size, int iter)
      //norm
      */
     
+    int product_vector[size];
+    int num_rows = size/numprocs;
+    matVec(mat, product_vector, x, num_rows, size);
+    
   return lambda;
 }
 
+//compute the 2-norm (length) of a given vector
 double norm2(double *x, int size);
 
-void matVec(double *mat, double *vec, double *local_vec, int nrows, int size);
+//multiply matrix by a vector.
+//should result in vec being result
+void matVec(double *mat, double *vec, double *local_vec, int nrows, int size){
+    //vec[size] = mat * local vec
+    for (int k = 0; k < nrows; k++){
+        for (int i = 0; i < size; i++){
+            vec[k] += mat[k][i] * local_vec[i];
+        }
+    }
+        
+}
 
 
 
