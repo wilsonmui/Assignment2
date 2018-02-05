@@ -1,0 +1,18 @@
+12 templated_functions_MULTI_TIME
+# Name Calls Subrs Excl Incl ProfileCalls # <metadata><attribute><name>Metric Name</name><value>TIME</value></attribute><attribute><name>Starting Timestamp</name><value>1517797614320608</value></attribute><attribute><name>Timestamp</name><value>1517797614320751</value></attribute><attribute><name>pid</name><value>29132</value></attribute></metadata>
+"int main(int, char **) C [{powermethod.c} {12,1}-{65,1}]  " 1 7 134 449754 0 GROUP="TAU_DEFAULT" 
+"MPI_Init()  " 1 0 311201 311201 0 GROUP="MPI" 
+"MPI_Comm_size()  " 3 0 2 2 0 GROUP="MPI" 
+"MPI_Comm_rank()  " 3 0 0 0 0 GROUP="MPI" 
+"void generatematrix(double *, int) C [{functions.c} {19,1}-{41,1}]  " 1 2 4 5 0 GROUP="TAU_USER" 
+"void generatevec(double *, int) C [{functions.c} {44,1}-{52,1}]  " 1 0 1 1 0 GROUP="TAU_USER" 
+"double powerMethod(double *, double *, int, int) C [{functions.c} {55,1}-{147,1}]  " 1 193 101 42116 0 GROUP="TAU_USER" 
+"MPI_Barrier()  " 11 0 40727 40727 0 GROUP="MPI" 
+"void matVec(double *, double *, double *, int, int) C [{functions.c} {162,1}-{169,1}]  " 10 0 30 30 0 GROUP="TAU_USER" 
+"MPI_Bcast()  " 160 0 1238 1238 0 GROUP="MPI" 
+"double norm2(double *, int) C [{functions.c} {150,1}-{156,1}]  " 10 0 20 20 0 GROUP="TAU_USER" 
+"MPI_Finalize()  " 1 0 96296 96296 0 GROUP="MPI" 
+0 aggregates
+1 userevents
+# eventname numevents max min mean sumsqr
+"Message size for broadcast" 160 88 88 88 1239040

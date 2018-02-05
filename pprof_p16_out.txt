@@ -1,0 +1,453 @@
+Reading Profile files in profile.*
+
+NODE 0;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.218          538           1           7     538629 int main(int, char **) C 
+ 74.4          400          400           1           0     400853 MPI_Init() 
+ 17.6           95           95           1           0      95025 MPI_Finalize() 
+  7.9        0.058           42           1         193      42526 double powerMethod(double *, double *, int, int) C 
+  7.7           41           41          11           0       3747 MPI_Barrier() 
+  0.2            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.011        0.011          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.009        0.009          10           0          1 double norm2(double *, int) C 
+  0.0        0.005        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_rank() 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_size() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 0, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 1;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.164          533           1           7     533365 int main(int, char **) C 
+ 74.0          394          394           1           0     394501 MPI_Init() 
+ 18.0           96           96           1           0      96160 MPI_Finalize() 
+  8.0        0.115           42           1         193      42533 double powerMethod(double *, double *, int, int) C 
+  7.7           41           41          11           0       3744 MPI_Barrier() 
+  0.2            1            1         160           0          7 MPI_Bcast() 
+  0.0        0.022        0.022          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0         0.02         0.02          10           0          2 double norm2(double *, int) C 
+  0.0        0.004        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.003        0.003           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_rank() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 1, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 2;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.154          528           1           7     528777 int main(int, char **) C 
+ 73.4          388          388           1           0     388093 MPI_Init() 
+ 18.5           97           97           1           0      97973 MPI_Finalize() 
+  8.0        0.056           42           1         193      42551 double powerMethod(double *, double *, int, int) C 
+  7.8           41           41          11           0       3750 MPI_Barrier() 
+  0.2            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.011        0.011          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.008        0.008          10           0          1 double norm2(double *, int) C 
+  0.0        0.003        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.003        0.003           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_rank() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 2, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 3;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.149          522           1           7     522334 int main(int, char **) C 
+ 73.0          381          381           1           0     381463 MPI_Init() 
+ 18.8           98           98           1           0      98208 MPI_Finalize() 
+  8.1        0.116           42           1         193      42507 double powerMethod(double *, double *, int, int) C 
+  7.9           41           41          11           0       3742 MPI_Barrier() 
+  0.2            1            1         160           0          7 MPI_Bcast() 
+  0.0        0.022        0.022          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0         0.02         0.02          10           0          2 double norm2(double *, int) C 
+  0.0        0.003        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.003        0.003           3           0          1 MPI_Comm_rank() 
+  0.0        0.003        0.003           3           0          1 MPI_Comm_size() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 3, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 4;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.131          514           1           7     514093 int main(int, char **) C 
+ 72.8          374          374           1           0     374228 MPI_Init() 
+ 18.9           97           97           1           0      97251 MPI_Finalize() 
+  8.3        0.057           42           1         193      42476 double powerMethod(double *, double *, int, int) C 
+  8.0           41           41          11           0       3742 MPI_Barrier() 
+  0.2            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.011        0.011          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.009        0.009          10           0          1 double norm2(double *, int) C 
+  0.0        0.005        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+  0.0            0            0           3           0          0 MPI_Comm_rank() 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 4, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 5;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.139          506           1           7     506704 int main(int, char **) C 
+ 72.6          367          367           1           0     367845 MPI_Init() 
+ 19.0           96           96           1           0      96279 MPI_Finalize() 
+  8.4        0.104           42           1         193      42433 double powerMethod(double *, double *, int, int) C 
+  8.1           41           41          11           0       3733 MPI_Barrier() 
+  0.2            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.024        0.024          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0         0.02         0.02          10           0          2 double norm2(double *, int) C 
+  0.0        0.005        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_rank() 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 5, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 6;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.123          499           1           7     499526 int main(int, char **) C 
+ 72.2          360          360           1           0     360488 MPI_Init() 
+ 19.3           96           96           1           0      96514 MPI_Finalize() 
+  8.5        0.054           42           1         193      42393 double powerMethod(double *, double *, int, int) C 
+  8.2           41           41          11           0       3735 MPI_Barrier() 
+  0.2            1            1         160           0          8 MPI_Bcast() 
+  0.0         0.01         0.01          10           0          1 double norm2(double *, int) C 
+  0.0        0.009        0.009          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.003        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_rank() 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 6, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 7;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.127          493           1           7     493670 int main(int, char **) C 
+ 71.7          353          353           1           0     353722 MPI_Init() 
+ 19.7           97           97           1           0      97466 MPI_Finalize() 
+  8.6         0.11           42           1         193      42347 double powerMethod(double *, double *, int, int) C 
+  8.3           41           41          11           0       3729 MPI_Barrier() 
+  0.2            1            1         160           0          7 MPI_Bcast() 
+  0.0        0.022        0.022          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0         0.02         0.02          10           0          2 double norm2(double *, int) C 
+  0.0        0.003        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.003        0.003           3           0          1 MPI_Comm_rank() 
+  0.0        0.003        0.003           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 7, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 8;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.117          486           1           7     486309 int main(int, char **) C 
+ 71.2          346          346           1           0     346486 MPI_Init() 
+ 20.0           97           97           1           0      97400 MPI_Finalize() 
+  8.7        0.057           42           1         193      42300 double powerMethod(double *, double *, int, int) C 
+  8.4           40           40          11           0       3727 MPI_Barrier() 
+  0.3            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.011        0.011          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.009        0.009          10           0          1 double norm2(double *, int) C 
+  0.0        0.003        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.003        0.003           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_rank() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 8, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 9;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.129          480           1           7     480119 int main(int, char **) C 
+ 70.7          339          339           1           0     339645 MPI_Init() 
+ 20.4           98           98           1           0      98150 MPI_Finalize() 
+  8.8        0.122           42           1         193      42188 double powerMethod(double *, double *, int, int) C 
+  8.5           40           40          11           0       3710 MPI_Barrier() 
+  0.3            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.022        0.022          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.019        0.019          10           0          2 double norm2(double *, int) C 
+  0.0        0.005        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+  0.0            0            0           3           0          0 MPI_Comm_rank() 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 9, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 10;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.078          501           1           7     501780 int main(int, char **) C 
+ 74.4          373          373           1           0     373315 MPI_Init() 
+ 25.3          126          126           1           0     126836 MPI_Finalize() 
+  0.3        0.047            1           1         193       1547 double powerMethod(double *, double *, int, int) C 
+  0.2            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.247        0.247          11           0         22 MPI_Barrier() 
+  0.0         0.01         0.01          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.008        0.008          10           0          1 double norm2(double *, int) C 
+  0.0        0.002        0.002           1           2          2 void generatematrix(double *, int) C 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_rank() 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_size() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 10, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 11;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0         0.14          465           1           7     465308 int main(int, char **) C 
+ 69.9          325          325           1           0     325399 MPI_Init() 
+ 21.0           97           97           1           0      97513 MPI_Finalize() 
+  9.1        0.118           42           1         193      42249 double powerMethod(double *, double *, int, int) C 
+  8.8           40           40          11           0       3718 MPI_Barrier() 
+  0.3            1            1         160           0          7 MPI_Bcast() 
+  0.0        0.023        0.023          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0         0.02         0.02          10           0          2 double norm2(double *, int) C 
+  0.0        0.005        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_rank() 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_size() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 11, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 12;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.134          455           1           7     455911 int main(int, char **) C 
+ 69.7          317          317           1           0     317909 MPI_Init() 
+ 21.1           96           96           1           0      96037 MPI_Finalize() 
+  9.2        0.054           41           1         193      41823 double powerMethod(double *, double *, int, int) C 
+  8.9           40           40          11           0       3683 MPI_Barrier() 
+  0.3            1            1         160           0          8 MPI_Bcast() 
+  0.0         0.01         0.01          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.008        0.008          10           0          1 double norm2(double *, int) C 
+  0.0        0.006        0.006           1           2          6 void generatematrix(double *, int) C 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+  0.0            0            0           3           0          0 MPI_Comm_rank() 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 12, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 13;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.134          449           1           7     449754 int main(int, char **) C 
+ 69.2          311          311           1           0     311201 MPI_Init() 
+ 21.4           96           96           1           0      96296 MPI_Finalize() 
+  9.4        0.101           42           1         193      42116 double powerMethod(double *, double *, int, int) C 
+  9.1           40           40          11           0       3702 MPI_Barrier() 
+  0.3            1            1         160           0          8 MPI_Bcast() 
+  0.0         0.03         0.03          10           0          3 void matVec(double *, double *, double *, int, int) C 
+  0.0         0.02         0.02          10           0          2 double norm2(double *, int) C 
+  0.0        0.004        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+  0.0            0            0           3           0          0 MPI_Comm_rank() 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 13, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 14;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.081          475           1           7     475923 int main(int, char **) C 
+ 72.3          344          344           1           0     344274 MPI_Init() 
+ 27.3          130          130           1           0     130033 MPI_Finalize() 
+  0.3        0.055            1           1         193       1531 double powerMethod(double *, double *, int, int) C 
+  0.3            1            1         160           0          8 MPI_Bcast() 
+  0.0        0.227        0.227          11           0         21 MPI_Barrier() 
+  0.0        0.012        0.012          10           0          1 void matVec(double *, double *, double *, int, int) C 
+  0.0         0.01         0.01          10           0          1 double norm2(double *, int) C 
+  0.0        0.002        0.003           1           2          3 void generatematrix(double *, int) C 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_size() 
+  0.0            0            0           3           0          0 MPI_Comm_rank() 
+  0.0            0            0           1           0          0 void generatevec(double *, int) C 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 14, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+NODE 15;CONTEXT 0;THREAD 0:
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.128          436           1           7     436601 int main(int, char **) C 
+ 68.0          297          297           1           0     297085 MPI_Init() 
+ 22.3           97           97           1           0      97312 MPI_Finalize() 
+  9.6        0.107           42           1         193      42069 double powerMethod(double *, double *, int, int) C 
+  9.3           40           40          11           0       3705 MPI_Barrier() 
+  0.3            1            1         160           0          7 MPI_Bcast() 
+  0.0        0.021        0.021          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.019        0.019          10           0          2 double norm2(double *, int) C 
+  0.0        0.005        0.005           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           1           0          1 void generatevec(double *, int) C 
+  0.0            0            0           3           0          0 MPI_Comm_rank() 
+---------------------------------------------------------------------------------------
+
+USER EVENTS Profile :NODE 15, CONTEXT 0, THREAD 0
+---------------------------------------------------------------------------------------
+NumSamples   MaxValue   MinValue  MeanValue  Std. Dev.  Event Name
+---------------------------------------------------------------------------------------
+       160         88         88         88          0  Message size for broadcast
+---------------------------------------------------------------------------------------
+
+FUNCTION SUMMARY (total):
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0            2        7,888          16         112     493050 int main(int, char **) C 
+ 72.0        5,676        5,676          16           0     354782 MPI_Init() 
+ 20.5        1,614        1,614          16           0     100903 MPI_Finalize() 
+  7.5            1          595          16        3088      37224 double powerMethod(double *, double *, int, int) C 
+  7.3          574          574         176           0       3263 MPI_Barrier() 
+  0.2           19           19        2560           0          8 MPI_Bcast() 
+  0.0        0.271        0.271         160           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0        0.229        0.229         160           0          1 double norm2(double *, int) C 
+  0.0        0.063        0.076          16          32          5 void generatematrix(double *, int) C 
+  0.0        0.032        0.032          48           0          1 MPI_Comm_size() 
+  0.0        0.016        0.016          48           0          0 MPI_Comm_rank() 
+  0.0        0.008        0.008          16           0          0 void generatevec(double *, int) C 
+
+FUNCTION SUMMARY (mean):
+---------------------------------------------------------------------------------------
+%Time    Exclusive    Inclusive       #Call      #Subrs  Inclusive Name
+              msec   total msec                          usec/call 
+---------------------------------------------------------------------------------------
+100.0        0.134          493           1           7     493050 int main(int, char **) C 
+ 72.0          354          354           1           0     354782 MPI_Init() 
+ 20.5          100          100           1           0     100903 MPI_Finalize() 
+  7.5       0.0832           37           1         193      37224 double powerMethod(double *, double *, int, int) C 
+  7.3           35           35          11           0       3263 MPI_Barrier() 
+  0.2            1            1         160           0          8 MPI_Bcast() 
+  0.0       0.0169       0.0169          10           0          2 void matVec(double *, double *, double *, int, int) C 
+  0.0       0.0143       0.0143          10           0          1 double norm2(double *, int) C 
+  0.0      0.00394      0.00475           1           2          5 void generatematrix(double *, int) C 
+  0.0        0.002        0.002           3           0          1 MPI_Comm_size() 
+  0.0        0.001        0.001           3           0          0 MPI_Comm_rank() 
+  0.0       0.0005       0.0005           1           0          0 void generatevec(double *, int) C 
