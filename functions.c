@@ -13,7 +13,7 @@
 #include "powermethod.h"
 #include <math.h>
 
-const int DEBUG = 1;
+const int DEBUG = 0;
 
 // Subroutine for generating the input matrix (just one thread's part)
 void generatematrix(double * mat, int size)
@@ -72,22 +72,20 @@ double powerMethod(double * mat, double * x, int size, int iter)
      //norm
      */
     
-    
+    MPI_Barrier(MPI_COMM_WORLD);
+
     int i, k;
-    for( k = 0; k < iter; k++){
-        lambda = norm2(x, size);
-        
-        for( i = 0; i < size; i++){
-            x[i] = x[i]/lambda;
+
+    if( DEBUG && myrank == 0 ) {
+            printf("starting vector:[");
+            for( i = 0; i < size; i++){
+                printf("%f ", x[i]);
+            }
+            printf("] \n");
         }
 
-        if( DEBUG && myrank == 0 ) {
-            printf("[");
-            for( i = 0; i < size; i++){
-                if(DEBUG) { printf("%f ", x[i]); }
-            }
-            printf("] lambda: %f\n", lambda);
-        }
+    
+    for( k = 0; k < iter; k++){
         
         //clear local_vec
         memset(local_vec, 0, sizeof(double) * num_rows);
@@ -95,6 +93,15 @@ double powerMethod(double * mat, double * x, int size, int iter)
         matVec(mat, x, local_vec, num_rows, size);
         //copy values to x
         memcpy(&x[num_rows*myrank], local_vec, sizeof(double) * num_rows);
+
+        if( DEBUG) {
+            printf("iter: %d, rank: %d, vector:[", k, myrank);
+            for( i = 0; i < size; i++){
+                printf("%f ", x[i]);
+            }
+            printf("] lambda: %f\n", lambda);
+            fflush(stdout);
+        }
         
         //make all processes' local vectors contain the full product vector
         /*
@@ -104,9 +111,35 @@ double powerMethod(double * mat, double * x, int size, int iter)
             }
         }
          */
+        MPI_Barrier(MPI_COMM_WORLD);
+
         for( i = 0; i < numprocs; i++){
-            MPI_Bcast(&x[i * num_rows], num_rows, MPI_INT, i, MPI_COMM_WORLD);
+            MPI_Bcast(&x[i * num_rows], num_rows, MPI_DOUBLE, i, MPI_COMM_WORLD);
         }
+
+        if( DEBUG) {
+            printf("iter: %d, rank: %d AFTER_BCAST, vector:[", k, myrank);
+            for( i = 0; i < size; i++){
+                printf("%f ", x[i]);
+            }
+            printf("] lambda: %f\n", lambda);
+            fflush(stdout);
+        }
+
+        lambda = norm2(x, size);
+        for( i = 0; i < size; i++){
+            x[i] = x[i]/lambda;
+        }
+
+        if( DEBUG && myrank == 0 ) {
+            printf("iter: %d, vector:[", k);
+            for( i = 0; i < size; i++){
+                printf("%f ", x[i]);
+            }
+            printf("] lambda: %f\n", lambda);
+            fflush(stdout);
+        }
+
     }
     
     return lambda;
