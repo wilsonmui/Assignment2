@@ -80,6 +80,14 @@ double powerMethod(double * mat, double * x, int size, int iter)
         for( i = 0; i < size; i++){
             x[i] = x[i]/lambda;
         }
+
+        if( DEBUG && myrank == 0 ) {
+            printf("[");
+            for( i = 0; i < size; i++){
+                if(DEBUG) { printf("%f ", x[i]); }
+            }
+            printf("] lambda: %f\n", lambda);
+        }
         
         //clear local_vec
         memset(local_vec, 0, sizeof(double) * num_rows);
