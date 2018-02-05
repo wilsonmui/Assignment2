@@ -20,24 +20,23 @@ void generatematrix(double * mat, int size)
     //mat[i][k]
     //processor 0 gets rows 1 through n/p of A, processor 1 gets rows n/p + 1 through 2n/p, and so forth
     
-    int myrank, numprocs, i, k;
+    int myrank, numprocs, row, col;
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
 
     int num_rows = size/numprocs;
     
-    for( i = myrank*num_rows; i < (myrank+1)*num_rows; i++ ){
-        for( k = 0; k < i; k++){
-            mat[i][k] = i;
+    for( row = 0; row < num_rows; row++ ){
+        for( col = 0; col < size; col++ ){
+            mat[row*size + col] = ( (row+11)*(col+13)*(myrank*17) ) % 1231; //persudo random by prime
         }
     }
 }
 
 // Subroutine to generate a vector
-void generatevec(double * x,int size)
+void generatevec(double * x, int size)
 {
     int myrank, i;
-    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
     
     for( i = 0; i < size; i++){
         x[i] = 1;
@@ -50,8 +49,11 @@ double powerMethod(double * mat, double * x, int size, int iter)
 {
     int myrank, numprocs;
     double lambda;
+    
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
     MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
+    int num_rows = size/numprocs;
+    double * local_vec = calloc(num_rows, sizeof(double));
     
     //each process should broadcast and gather
     /*
@@ -63,7 +65,7 @@ double powerMethod(double * mat, double * x, int size, int iter)
      //norm
      */
     
-    int num_rows = size/numprocs;
+    
     int i, k;
     for( k = 0; k < iter; k++){
         lambda = norm2(x, size);
@@ -72,8 +74,12 @@ double powerMethod(double * mat, double * x, int size, int iter)
             x[i] = x[i]/lambda;
         }
         
-        //make local vec = matrix * local vec
-        matVec(mat, x, x, num_rows, size);
+        //clear local_vec
+        memset(local_vec, 0, sizeof(double) * num_rows);
+        //make local_vec = matrix * x
+        matVec(mat, x, local_vec, num_rows, size);
+        //copy values to x
+        memcpy(&x[num_rows*myrank], local_vec, sizeof(double) * num_rows);
         
         //make all processes' local vectors contain the full product vector
         /*
@@ -102,19 +108,14 @@ double norm2(double *x, int size){
 }
 
 //multiply matrix by a vector.
-//should result in vec being result
+//precondition: local_vec is clean
+//input: mat, vec
+//output: local_vec 
 void matVec(double *mat, double *vec, double *local_vec, int nrows, int size){
-    int myrank, numprocs, i, j, k;
-    MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
-    MPI_Comm_rank(MPI_COMM_WORLD, &myrank);
-    
-    int num_rows = size/numprocs;
-
-    for( j = myrank*num_rows; j < (myrank+1)*num_rows; j++){
-        for( k = 0; k < nrows; k++){
-            for( i = 0; i < size; i++){
-                vec[j] += mat[k][i] * local_vec[i];
-            }
+    int row, col;
+    for( row = 0; row < nrows; row++){
+        for( col = 0; col < size; col++){
+            local_vec[row] += mat[row*size + col] * vec[col];
         }
     }
 }
