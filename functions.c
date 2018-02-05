@@ -148,7 +148,8 @@ double powerMethod(double * mat, double * x, int size, int iter)
 
 //compute the 2-norm (length) of a given vector
 double norm2(double *x, int size){
-    int sum = 0, i;
+    double sum = 0;
+    int i;
     for( i = 0; i < size; i++){
         sum += x[i]*x[i];
     }
