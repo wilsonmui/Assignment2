@@ -13,6 +13,8 @@
 #include "powermethod.h"
 #include <math.h>
 
+const int DEBUG = 1;
+
 // Subroutine for generating the input matrix (just one thread's part)
 void generatematrix(double * mat, int size)
 {
@@ -26,10 +28,15 @@ void generatematrix(double * mat, int size)
 
     int num_rows = size/numprocs;
     
+    if(DEBUG) { printf("matrix of process %d/%d:\n", myrank, numprocs); }
     for( row = 0; row < num_rows; row++ ){
+        int realrow = myrank*num_rows + row;
         for( col = 0; col < size; col++ ){
-            mat[row*size + col] = ( (row+11)*(col+13)*(myrank*17) ) % 1231; //persudo random by prime
+            //mat[row*size + col] = ( (row+11)*(col+13)*(myrank*17) ) % 1231; //persudo random by prime
+            mat[row*size + col] = col <= realrow ? realrow + 1 : 0; //persudo random by prime
+            if(DEBUG) { printf("%f ", mat[row*size + col]); }
         }
+        if(DEBUG) { printf("\n"); }
     }
 }
 
